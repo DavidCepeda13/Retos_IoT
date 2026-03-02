@@ -8,7 +8,7 @@ import schedule
 import time
 from django.conf import settings
 
-client = mqtt.Client(settings.MQTT_USER_PUB)
+client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1, client_id=settings.MQTT_USER_PUB)
 
 
 def analyze_data():
@@ -84,7 +84,7 @@ def setup_mqtt():
     print("Iniciando cliente MQTT...", settings.MQTT_HOST, settings.MQTT_PORT)
     global client
     try:
-        client = mqtt.Client(settings.MQTT_USER_PUB)
+        client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1, client_id=settings.MQTT_USER_PUB)
         client.on_connect = on_connect
         client.on_disconnect = on_disconnect
 

@@ -62,9 +62,10 @@ def on_disconnect(client: mqtt.Client, userdata, rc):
     client.reconnect()
 
 
+client = None
 print("Iniciando cliente MQTT...", settings.MQTT_HOST, settings.MQTT_PORT)
 try:
-    client = mqtt.Client(settings.MQTT_USER)
+    client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1, client_id=settings.MQTT_USER)
     client.on_connect = on_connect
     client.on_message = on_message
     client.on_disconnect = on_disconnect
