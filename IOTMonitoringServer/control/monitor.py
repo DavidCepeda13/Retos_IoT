@@ -102,10 +102,10 @@ def setup_mqtt():
 
 def start_cron():
     '''
-    Inicia el cron que se encarga de ejecutar la función analyze_data cada minuto.
+    Inicia el cron que se encarga de ejecutar la función analyze_data cada 10 segundos.
     '''
     print("Iniciando cron...")
-    schedule.every().hour.do(analyze_data)
+    schedule.every(10).seconds.do(analyze_data)
     print("Servicio de control iniciado")
     while 1:
         schedule.run_pending()
